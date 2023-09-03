@@ -50,7 +50,6 @@ public class Main31 {
 
         String[] arrayString = userString.split(" ");
         int kodError = checkEnteredDataByNumber(arrayString);
-        System.out.println(kodError);
         if (kodError > 0) {
             throw new RuntimeException("Введено больше данных, чем требовалось");
         } else if (kodError < 0) {
@@ -71,8 +70,9 @@ public class Main31 {
     private static String[] parseUserData(String[] arr) {
         String[] result = new String[6];
         boolean[] isInResult = new boolean[] { false, false, false, false, false, false };
-        int fio = -1;
-        for (String record : arr) {
+        int fio = 3;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            String record = arr[i];
             int len = record.length();
             if (len == 0) {
                 throw new RuntimeException("Введена пустая строка");
@@ -104,20 +104,20 @@ public class Main31 {
                         result[5] = record;
                         isInResult[5] = true;
                     } else {
-                        if (fio < 2) {
-                            result[++fio] = record;
+                        if (fio > 0) {
+                            result[--fio] = record;
                             isInResult[fio] = true;
                         }
                     }
                 } else {
-                    if (fio < 2) {
-                        result[++fio] = record;
+                    if (fio > 0) {
+                        result[--fio] = record;
                         isInResult[fio] = true;
                     }
                 }
             } else {
-                if (fio < 2) {
-                    result[++fio] = record;
+                if (fio > 0) {
+                    result[--fio] = record;
                     isInResult[fio] = true;
                 }
             }
